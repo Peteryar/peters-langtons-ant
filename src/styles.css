@@ -1,20 +1,51 @@
-.langton-box-con{
+.langton-box-con {
     width: 100vw;
     height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-#langton-box{
+
+#langton-box {
     width: 500px;
     height: 500px;
     border: 1px solid #000;
     display: flex;
     flex-wrap: wrap;
 }
-.child{
-    width:50px;
-    height:50px;
-    border:1px solid #000;
+
+.child {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000;
     box-sizing: border-box;
+}
+
+.dark {
+    background-color: #000;
+}
+
+.white {
+    background-color: #fff;
+}
+
+.left {
+    width: 45px;
+    height: 45px;
+    transform: rotate(-90deg);
+}
+.right{
+    width: 45px;
+    height: 45px;
+    transform: rotate(90deg);
+}
+.down{
+    width: 45px;
+    height: 45px;
+    transform: rotate(180deg);
+}
+.up{
+    width: 45px;
+    height: 45px;
+    /* transform: rotate(90deg); */
 }
