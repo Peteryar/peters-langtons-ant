@@ -21,6 +21,6 @@ describe('index.html', () => {
 
   it('renders a heading element', () => {
     expect(container.querySelector('h1')).not.toBeNull();
-    expect(getByText(container, 'Pun Generator')).toBeInTheDocument();
+    expect(getByText(container, 'Decagon test')).toBeInTheDocument();
   });
 });
