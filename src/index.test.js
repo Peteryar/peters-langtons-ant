@@ -1,4 +1,4 @@
-import { getByText } from '@testing-library/dom';
+// import { getByText } from '@testing-library/dom';
 import '@testing-library/jest-dom/extend-expect';
 import { JSDOM } from 'jsdom';
 import fs from 'fs';
@@ -7,7 +7,7 @@ import path from 'path';
 const html = fs.readFileSync(path.resolve(__dirname, './index.html'), 'utf8');
 
 let dom;
-let container;
+let body;
 
 describe('index.html', () => {
   beforeEach(() => {
@@ -16,11 +16,14 @@ describe('index.html', () => {
     // This is indeed dangerous and should only be done with trusted content.
     // https://github.com/jsdom/jsdom#executing-scripts
     dom = new JSDOM(html, { runScripts: 'dangerously' });
-    container = dom.window.document.body;
+    body = dom.window.document.body;
   });
 
-  it('renders a heading element', () => {
-    expect(container.querySelector('h1')).not.toBeNull();
-    expect(getByText(container, 'Decagon test')).toBeInTheDocument();
+  it('should render two divs element', () => {
+    expect(body.querySelector('.header')).not.toBeNull();
+    expect(body.querySelector('.langton-box-con')).not.toBeNull();
+  });
+  it('should render an element with id langton-box', ()=>{
+     expect(body.querySelector('#langton-box')).not.toBeNull();
   });
 });
