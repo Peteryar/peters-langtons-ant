@@ -1,18 +1,15 @@
 {
     "env": {
         "browser": true,
-        "commonjs": true,
+        "node":true,
         "es2021": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
-        "ecmaVersion": "latest"
+        "ecmaVersion": "latest",
+        "sourceType": "module"
     },
     "rules": {
-        // "indent": [
-        //     "error",
-        //     "tab"
-        // ],
         "linebreak-style": [
             "error",
             "unix"
@@ -25,5 +22,15 @@
             "error",
             "always"
         ]
-    }
+    },
+    "overrides": [
+        {
+          "files": [
+            "**/*.test.js"
+          ],
+          "env": {
+            "jest": true
+          }
+        }
+      ]
 }
