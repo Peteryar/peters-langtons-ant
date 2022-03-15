@@ -18,8 +18,9 @@
     "babel-eslint": "^10.1.0",
     "babel-jest": "^27.5.1",
     "eslint": "^8.11.0",
-    "jest": "^27.5.1",
-    "serve": "^13.0.2"
+    "jest": "^27.5.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "serve": "^13.0.2"
+  }
 }

@@ -9,3 +9,6 @@ function setupPlayground() {
 }
 
 setupPlayground();
+
+const rootEl = document.getElementById('langton-box');
+console.log(rootEl);
