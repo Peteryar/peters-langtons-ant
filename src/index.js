@@ -29,20 +29,24 @@ function start() {
     ant.classList.add(childOrient);
 
     el.appendChild(ant);
-    el.classList.remove('white');
-    el.classList.add('dark');
+     if(el.classList.contains('white')){
+        el.classList.remove('white');
+        el.classList.add('dark');
+    }
 
-    // console.log(el);
+    console.log('el++>', el);
 }
 
 function getAntPosInfo(pos) {
     const el = document.querySelector(`.no${pos}`);
 
-    if (el.classList[el.classList.length - 1] == 'dark') {
+    if (el.classList.contains('dark')) {
         antMovement = 'anticlockwise';
-    } else {
+    } else  {
         antMovement = 'clockwise';
     }
+
+    console.log('antOrient', antMovement);
 
     childOrient = el.firstChild.classList[0];
 
@@ -69,23 +73,21 @@ function getAntPosInfo(pos) {
             childOrient = 'up';
         } else if (childOrient == 'down') {
             nextPos = pos + 1;
-            childOrient = 'left';
+            childOrient = 'right';
         } else {
             nextPos = pos + 10;
             childOrient = 'down';
         }
     }
-    
+
 }
 
 function moveAnt(pos) {
     const el = document.querySelector(`.no${currentPoint}`);
-    // let newImg = document.createElement('');
 
     el.innerHTML = '';
 
     const newEl = document.querySelector(`.no${pos}`);
-
 
     let ant = document.createElement('img');
     ant.setAttribute('src', './assets/Red_ant.svg');
@@ -94,16 +96,14 @@ function moveAnt(pos) {
 
     newEl.appendChild(ant);
 
-    // childOrient = el.firstChild.classList[0];
-
-    if (newEl.classList[newEl.classList.length - 1] == 'dark') {
-        newEl.classList.remove('black');
+    if(newEl.classList.contains('dark')){
+        newEl.classList.remove('dark');
         newEl.classList.add('white');
-    } else {
+    }else if(newEl.classList.contains('white')){
         newEl.classList.remove('white');
         newEl.classList.add('dark');
     }
-
+    
     currentPoint = nextPos;
 
 }
@@ -116,7 +116,7 @@ function langtonAnt() {
     return setInterval(() => {
         getAntPosInfo(currentPoint);
         moveAnt(nextPos);
-    }, 500);
+    }, 2000);
 }
 
 langtonAnt();
