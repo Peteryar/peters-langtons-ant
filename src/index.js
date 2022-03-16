@@ -80,6 +80,12 @@ function getAntPosInfo(pos) {
         }
     }
 
+    if(nextPos < 0){
+        nextPos = nextPos + 100;
+    }else if(nextPos > 100){
+        nextPos = nextPos -100;
+    }
+  console.log('nextPos', nextPos);
 }
 
 function moveAnt(pos) {
@@ -103,20 +109,17 @@ function moveAnt(pos) {
         newEl.classList.remove('white');
         newEl.classList.add('dark');
     }
-    
     currentPoint = nextPos;
 
 }
-// start();
-// getAntPosInfo(currentPoint);
-// moveAnt(nextPos);
+
 
 function langtonAnt() {
     start();
     return setInterval(() => {
         getAntPosInfo(currentPoint);
         moveAnt(nextPos);
-    }, 2000);
+    }, 1500);
 }
 
 langtonAnt();

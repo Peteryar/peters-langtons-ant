@@ -49,3 +49,10 @@
     height: 45px;
     /* transform: rotate(90deg); */
 }
+
+.start{
+    background-color: green;
+}
+.stop{
+    background-color: red;
+}
