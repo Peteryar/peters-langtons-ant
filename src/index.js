@@ -1,8 +1,19 @@
+let antMovement;
+
+let currentPoint = 61;
+let nextPos;
+
+let childOrient = 'right';
+
+const inputEl = document.querySelector('input');
+const startButton = document.querySelector('.start');
+const stopButton = document.querySelector('.stop');
+let speed;
+
 function setupPlayground() {
-    for (let i = 1; i <= 100; i++) {
+    for (let i = 1; i <= 121; i++) {
         let childBox = document.createElement('div');
         childBox.className = `child no${i} white`;
-        // childBox.setAttribute('u')
         const rootEl = document.getElementById('langton-box');
         rootEl.appendChild(childBox);
     }
@@ -11,16 +22,7 @@ function setupPlayground() {
 setupPlayground();
 
 
-
-let antMovement;
-
-let currentPoint = 45;
-let nextPos;
-
-let childOrient = 'right';
-
-
-function start() {
+function initAntPosition() {
 
     const el = document.querySelector(`.no${currentPoint}`);
 
@@ -29,7 +31,7 @@ function start() {
     ant.classList.add(childOrient);
 
     el.appendChild(ant);
-     if(el.classList.contains('white')){
+    if (el.classList.contains('white')) {
         el.classList.remove('white');
         el.classList.add('dark');
     }
@@ -42,11 +44,9 @@ function getAntPosInfo(pos) {
 
     if (el.classList.contains('dark')) {
         antMovement = 'anticlockwise';
-    } else  {
+    } else {
         antMovement = 'clockwise';
     }
-
-    console.log('antOrient', antMovement);
 
     childOrient = el.firstChild.classList[0];
 
@@ -55,13 +55,13 @@ function getAntPosInfo(pos) {
             nextPos = pos + 1;
             childOrient = 'right';
         } else if (childOrient == 'right') {
-            nextPos = pos + 10;
+            nextPos = pos + 11;
             childOrient = 'down';
         } else if (childOrient == 'down') {
             nextPos = pos - 1;
             childOrient = 'left';
         } else {
-            nextPos = pos - 10;
+            nextPos = pos - 11;
             childOrient = 'up';
         }
     } else {
@@ -69,23 +69,22 @@ function getAntPosInfo(pos) {
             nextPos = pos - 1;
             childOrient = 'left';
         } else if (childOrient == 'right') {
-            nextPos = pos - 10;
+            nextPos = pos - 11;
             childOrient = 'up';
         } else if (childOrient == 'down') {
             nextPos = pos + 1;
             childOrient = 'right';
         } else {
-            nextPos = pos + 10;
+            nextPos = pos + 11;
             childOrient = 'down';
         }
     }
 
-    if(nextPos < 0){
-        nextPos = nextPos + 100;
-    }else if(nextPos > 100){
-        nextPos = nextPos -100;
+    if (nextPos <= 0) {
+        nextPos = nextPos + 121;
+    } else if (nextPos > 121) {
+        nextPos = nextPos - 121;
     }
-  console.log('nextPos', nextPos);
 }
 
 function moveAnt(pos) {
@@ -102,10 +101,10 @@ function moveAnt(pos) {
 
     newEl.appendChild(ant);
 
-    if(newEl.classList.contains('dark')){
+    if (newEl.classList.contains('dark')) {
         newEl.classList.remove('dark');
         newEl.classList.add('white');
-    }else if(newEl.classList.contains('white')){
+    } else if (newEl.classList.contains('white')) {
         newEl.classList.remove('white');
         newEl.classList.add('dark');
     }
@@ -114,14 +113,35 @@ function moveAnt(pos) {
 }
 
 
-function langtonAnt() {
-    start();
+function runLangtonAnt(speed) {
+    initAntPosition();
     return setInterval(() => {
         getAntPosInfo(currentPoint);
         moveAnt(nextPos);
-    }, 1500);
+    }, speed);
 }
+inputEl.addEventListener('keyup', function (e) {
+    speed = Number(e.target.value) ;
+});
 
-langtonAnt();
+let runningAnt;
 
-// setTimeout(()=>clearInterval(langtonAnt()), 3000);
+startButton.onclick = function () {
+    if(runningAnt){
+        alert('stop running ant first');
+        return;
+    }
+    if(!speed){
+        alert('please enter speed');
+        return;
+    }
+    runningAnt = runLangtonAnt(speed);
+};
+
+stopButton.onclick = function () {
+    clearInterval(runningAnt);
+    runningAnt = null;
+};
+
+
+// langtonAnt();
