@@ -4,10 +4,8 @@ import { JSDOM } from 'jsdom';
 import fs from 'fs';
 import path from 'path';
 
-let page;
 
 const html = fs.readFileSync(path.resolve(__dirname, './index.html'), 'utf8');
-//page = window.document.body.innerHTML = html;
 
 const { setupPlayground } = require('./index');
 
