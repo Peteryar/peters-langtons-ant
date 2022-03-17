@@ -25,7 +25,7 @@ window.onload = () => {
     setupPlayground();
 
     inputEl.addEventListener('keyup', function (e) {
-        speed = Number(e.target.value);
+        speed = Math.floor(1000 / Number(e.target.value) * 1000); //smaller number gets bigger while bigger number gets small to increament speed
     });
 
     startButton.onclick = function () {
@@ -39,12 +39,12 @@ window.onload = () => {
         }
         runningAnt = runLangtonAnt(speed);
     };
-    
+
     stopButton.onclick = function () {
         clearInterval(runningAnt);
         runningAnt = null;
     };
-    
+
 };
 
 
@@ -61,8 +61,6 @@ function initAntPosition() {
         el.classList.remove('white');
         el.classList.add('dark');
     }
-
-    console.log('el++>', el);
 }
 
 function getAntPosInfo(pos) {
@@ -83,7 +81,6 @@ function getAntPosInfo(pos) {
             } else {
                 nextPos = pos + 1;
             }
-            console.log('next', nextPos);
             childOrient = 'right';
         } else if (childOrient == 'right') {
             nextPos = pos + 11;
