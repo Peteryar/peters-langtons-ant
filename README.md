@@ -1,6 +1,9 @@
 # Peter's Langton's Ant.
 This is a project done as an accessment to join a decagon client team as a fullstack Developer.
 
+## Running live project
+you can see the project running live [here](https://peter-langton-ant.netlify.app/)
+
 ## Running project locally on your machine
 if you like to run this project locally on your machine then
 

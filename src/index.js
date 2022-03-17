@@ -142,10 +142,10 @@ function moveAnt(pos) {
     ant.setAttribute('src', './assets/Red_ant.svg');
     ant.classList.add(childOrient);
 
-    newEl.appendChild(ant);
+    newEl.appendChild(ant);// add ant to new element
 
-    if (newEl.classList.contains('dark')) {
-        newEl.classList.remove('dark');
+    if (newEl.classList.contains('dark')) { // change background color to 
+        newEl.classList.remove('dark');     // oposite color 
         newEl.classList.add('white');
     } else if (newEl.classList.contains('white')) {
         newEl.classList.remove('white');
@@ -164,8 +164,5 @@ function runLangtonAnt(speed) {
     }, speed);
 }
 
-
-
-// langtonAnt();
 
 module.exports = { setupPlayground, getAntPosInfo };

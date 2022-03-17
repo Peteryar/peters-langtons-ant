@@ -4,7 +4,13 @@ import { JSDOM } from 'jsdom';
 import fs from 'fs';
 import path from 'path';
 
+let page;
+
 const html = fs.readFileSync(path.resolve(__dirname, './index.html'), 'utf8');
+//page = window.document.body.innerHTML = html;
+
+const { setupPlayground } = require('./index');
+
 
 let dom;
 let body;
@@ -13,14 +19,8 @@ describe('index.html', () => {
     beforeEach(() => {
         // Constructing a new JSDOM with this option is the key
         // to getting the code in the script tag to execute.
-        // This is indeed dangerous and should only be done with trusted content.}
-        const { setupPlayground } = require('./index');
         dom = new JSDOM(html, { runScripts: 'dangerously' });
-        body = dom.window.document.body;
-
-        body.onload = () => {
-            setupPlayground();
-        };
+        body = dom.window.document;
 
     });
 
@@ -46,7 +46,11 @@ describe('index.html', () => {
 
 
     it('should have the divs with class child inside #langton-box', () => {
-        expect(body.querySelector('.child').length).toBe(121);
+        window.onload = () => {
+            setupPlayground();
+            console.log(body.querySelector('.child'));
+        };
+        expect(body.querySelector('.child')).not.toBeNull();
     });
 });
 

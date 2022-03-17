@@ -56,3 +56,51 @@
 .stop{
     background-color: red;
 }
+
+@media screen and (max-width:600px) {
+    #langton-box {
+        width: 440px;
+        height: 440px;
+        border: 1px solid #000;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .child {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #000;
+        box-sizing: border-box;
+    }
+}
+
+@media screen and (max-width:00px) {
+    #langton-box {
+        width: 440px;
+        height: 440px;
+        border: 1px solid #000;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .child {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #000;
+        box-sizing: border-box;
+    }
+}
+
+@media screen and (max-width:450px) {
+    #langton-box {
+        width: 330px;
+        height: 330px;
+        border: 1px solid #000;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .child {
+        width: 30px;
+        height: 30px;
+        border: 1px solid #000;
+        box-sizing: border-box;
+    }
+}
