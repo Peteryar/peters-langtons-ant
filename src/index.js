@@ -19,7 +19,33 @@ function setupPlayground() {
     }
 }
 
-setupPlayground();
+window.onload = () => {
+    let runningAnt;
+
+    setupPlayground();
+
+    inputEl.addEventListener('keyup', function (e) {
+        speed = Number(e.target.value);
+    });
+
+    startButton.onclick = function () {
+        if (runningAnt) {
+            alert('stop running ant first');
+            return;
+        }
+        if (!speed) {
+            alert('please enter speed');
+            return;
+        }
+        runningAnt = runLangtonAnt(speed);
+    };
+    
+    stopButton.onclick = function () {
+        clearInterval(runningAnt);
+        runningAnt = null;
+    };
+    
+};
 
 
 function initAntPosition() {
@@ -138,29 +164,8 @@ function runLangtonAnt(speed) {
     }, speed);
 }
 
-inputEl.addEventListener('keyup', function (e) {
-    speed = Number(e.target.value);
-});
-
-let runningAnt;
-
-startButton.onclick = function () {
-    if (runningAnt) {
-        alert('stop running ant first');
-        return;
-    }
-    if (!speed) {
-        alert('please enter speed');
-        return;
-    }
-    runningAnt = runLangtonAnt(speed);
-};
-
-stopButton.onclick = function () {
-    clearInterval(runningAnt);
-    runningAnt = null;
-};
 
 
 // langtonAnt();
 
+module.exports = { setupPlayground, getAntPosInfo };
