@@ -41,8 +41,6 @@ describe('index.html', () => {
         expect(body.querySelectorAll('button').length).toBe(2);
     });
 
-
-
     it('should have the divs with class child inside #langton-box', () => {
         window.onload = () => {
             setupPlayground();

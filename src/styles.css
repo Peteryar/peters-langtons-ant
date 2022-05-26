@@ -35,7 +35,7 @@
     transform: rotate(-90deg);
 }
 .right{
-    width: 45px;
+    /* width: 45px; */
     height: 45px;
     transform: rotate(90deg);
 }

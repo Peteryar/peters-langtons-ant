@@ -37,6 +37,10 @@ window.onload = () => {
             alert('please enter speed');
             return;
         }
+        if(speed < 1000){
+            alert('must be greater than 1000');
+            return;
+        }
         runningAnt = runLangtonAnt(speed);
     };
 
@@ -64,6 +68,7 @@ function initAntPosition() {
 }
 
 function getAntPosInfo(pos) {
+    
     const el = document.querySelector(`.no${pos}`);
 
     if (el.classList.contains('dark')) {
@@ -140,6 +145,8 @@ function moveAnt(pos) {
     ant.classList.add(childOrient);
 
     newEl.appendChild(ant);// add ant to new element
+    console.log('img', newEl.querySelector('img'));
+
 
     if (newEl.classList.contains('dark')) { // change background color to 
         newEl.classList.remove('dark');     // oposite color 
